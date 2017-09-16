@@ -46,7 +46,7 @@ class LightsensorTest(unittest.TestCase):
 	time.sleep(3)
 	
 	self.assertTrue(self.count < c_prev + 4, "freq does not change")
-	self.assertFales(self.count == c_prev, "subscriber is stopped")
+	self.assertFalse(self.count == c_prev, "subscriber is stopped")
 
 if __name__ == '__main__':
     time.sleep(3)
