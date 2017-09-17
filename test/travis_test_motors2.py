@@ -57,7 +57,7 @@ class MotorTest(unittest.TestCase):
 	self.assertEqual(ret.message, "OFF", "motor off wrong message")
 	with open("/dev/rtmotoren0", "r") as f:
 	    data = f.readline()
-	    self.assertEqual(date, "0\n", "wrong value inrtmotor0 at motor off")
+	    self.assertEqual(data, "0\n", "wrong value inrtmotor0 at motor off")
 
 	on = rospy.ServiceProxy('/motor_on', Trigger)
 	ret = on()
