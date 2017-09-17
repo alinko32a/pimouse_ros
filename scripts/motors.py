@@ -63,17 +63,19 @@ class Motor():
     def callback_on(self, message): return self.onoff_response(True)
     def callback_off(self, message): return self.onoff_response(False)
 
-    def callback_tm(self, mesasage):
+    def callback_tm(self, message):
 	if not self.is_on:
 	    rospy.logerr("not enpowered")
 	    return False
 
 	dev = "/dev/rtmotor0"
 	try:
-	    with oprn(dev, 'w') as f:
+	    with open(dev, 'w') as f:
 		f.write("%d %d %d\n" %
 		    (message.left_hz, message.right_hz, message.duration_ms))
 	except:
+	    import traceback
+	    traceback.print_exc()
 	    rospy.logerr("cannot write to " + dev)
 	    return False
 
